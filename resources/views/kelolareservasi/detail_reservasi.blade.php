@@ -31,7 +31,7 @@
           <div class="card col-sm-6 mb-3">
             <div class="media">
               @if($detail_reservasi->user->fhoto != null)
-                <img src="{{url('/Foto_profile/'.$detail_reservasi->user->path_fhoto,$detail_reservasi->user->fhoto)}}" class="img-circle mt-3" style="width:15%;">
+                <img src="{{url('/Foto_Profile/'.$detail_reservasi->user->path_fhoto,$detail_reservasi->user->fhoto)}}" class="img-circle mt-3" style="width:15%;">
               @else
                 <img src="{{url('/TemplateHome/dist/img/user.jpg')}}" class="img-circle mt-3" style="width:15%;">
               @endif

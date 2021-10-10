@@ -43,7 +43,7 @@
                 <div class="row">
                   <div class="card col-sm-1 mb-3 text-center">
                     @if($value->user->fhoto != null)
-                      <a><img src="{{url('/Foto_profile/'.$value->user->path_fhoto,$value->user->fhoto)}}" class="img-circle" style="min-width:100%;max-width:70%;margin-top:10%;"></a>
+                      <a><img src="{{url('/Foto_Profile/'.$value->user->path_fhoto,$value->user->fhoto)}}" class="img-circle" style="min-width:100%;max-width:70%;margin-top:10%;"></a>
                     @else
                       <a><img src="{{url('/TemplateHome/dist/img/user.jpg')}}" class="img-circle" style="min-width:100%;max-width:70%;margin-top:10%;"></a>
                     @endif
