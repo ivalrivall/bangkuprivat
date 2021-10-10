@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Redirect;
+use Carbon\Carbon;
 use App\models\User;
 use App\models\tbl_informasi;
 use App\models\tbl_detail_mentor;
@@ -16,6 +17,7 @@ use App\models\detail_tipe_pengajaran;
 use App\models\pembayaran_reservasi;
 use App\models\ulasan_mentor;
 use App\models\detail_reservasi;
+use PhpParser\Node\Stmt\Foreach_;
 
 class UserReservasiController extends Controller
 {
@@ -172,6 +174,38 @@ class UserReservasiController extends Controller
                                     ->get();
     $detail_skill = detail_skill::where('detail_mentor_id',$detail_mentor->id_detail_mentor)->get();
     $detail_hari = detail_hari::where('detail_mentor_id',$detail_mentor->id_detail_mentor)->get();
+    $detail_reservasi = detail_reservasi::whereHas('reservasi', function($q) use ($detail_mentor) {
+        $q->where('mentor_id', $detail_mentor->id_user)
+        ->whereNotIn('status_id', [10,5,8]);
+    })->get();
+    // $current = strtotime('00.00');
+    // $end = strtotime('23.59');
+    // $ketersediaan = [];
+    // foreach ($detail_hari as $key => $value) {
+    //     while ($current <= $end) {
+    //         $ketersediaan[] = date('H.i', $current);
+    //         $current = strtotime('+60 minutes', $current);
+    //     }
+    // }
+    // foreach ($ketersediaan as $key => $value) {
+    //     foreach ($detail_hari as $k => $dh) {
+    //         if ($dh->start_jam < $value && $dh->end_jam > $value) {
+    //             $kts[] = $value;
+    //         }
+    //     }
+    // }
+    // dd($kts);
+    // foreach ($detail_reservasi as $drk => $dr) {
+    //     while ($current <= $end) {
+    //         // if ($hari->start_jam > $current) {
+    //             $ketersediaan[] = date('H.i', $current);
+    //         // }
+    //         // if ($hari->end_jam < $end) {
+    //             // $ketersediaan[] = date('H.i', $current);
+    //         // }
+    //         $current = strtotime('+60 minutes', $current);
+    //     }
+    // }
     $detail_tipe_pengajaran = detail_tipe_pengajaran::where('detail_mentor_id',$detail_mentor->id_detail_mentor)->get();
     return view('reservasi_user.pengajuan_reservasi_user', compact('detail_mentor','detail_skill','detail_hari','jml_ulasan','ulasan_mentor','detail_tipe_pengajaran'));
   }
@@ -190,17 +224,41 @@ class UserReservasiController extends Controller
 
   }
 
-  public function pengajuan_reservasi($id)
+  public function pengajuan_reservasi(Request $request, $id)
   {
       $data_mentor = tbl_detail_mentor::find($id);
       $hari = detail_hari::where('detail_mentor_id',$id)->get();
       $tipe_pengajaran = detail_tipe_pengajaran::where('detail_mentor_id',$id)->get();
       $kebutuhan = master_kebutuhan::whereIn('id',[1,2,3])->get();
-      return view('reservasi_user.mulai_pengajuan_user', compact('data_mentor','hari','tipe_pengajaran','kebutuhan'));
+      // keterisian berdasarkan status: Pembelajaran Sedang Berlangsung,Konfirmasi Mentor,Konfirmasi Admin
+      $keterisian = tbl_reservasi::where('mentor_id',$id)->whereIn('status_id',[10,5,4])
+        ->orderby('id','desc')
+        ->get();
+
+        $default = $request->default ?? '19.00';
+        $interval = $request->interval ?? '+60 minutes';
+        $output = [];
+
+        $current = strtotime('00.00');
+        $end = strtotime('23.59');
+
+        foreach ($hari as $key => $value) {
+            while ($current <= $end) {
+                // if ($hari->start_jam > $current) {
+                    $ketersediaan[] = date('H.i', $current);
+                // }
+                // if ($hari->end_jam < $end) {
+                    // $ketersediaan[] = date('H.i', $current);
+                // }
+                $current = strtotime($interval, $current);
+            }
+        }
+      return view('reservasi_user.mulai_pengajuan_user', compact('data_mentor','hari','tipe_pengajaran','kebutuhan','keterisian','ketersediaan'));
   }
 
   public function store(Request $request)
   {
+    //   dd(($request->time_start[0]));
       DB::beginTransaction();
       $sub_total = preg_replace("/[^0-9]/", "", $request->sub_total);
       if($request->kebutuhan == 99 && $request->kebutuhan_lainnya != null){
@@ -227,8 +285,8 @@ class UserReservasiController extends Controller
           $detail_reservasi = new detail_reservasi;
           $detail_reservasi->reservasi_id = $pengajuan_reservasi->id;
           $detail_reservasi->hari_id = $val->hari_id;
-          $detail_reservasi->start_jam = $val->start_jam;
-          $detail_reservasi->end_jam = $val->end_jam;
+          $detail_reservasi->start_jam = str_replace('.00', ':', $request->time_start[$key]).'00:00';
+          $detail_reservasi->end_jam = str_replace('.00', ':', $request->time_end[$key]).'00:00';
           $detail_reservasi->save();
         }
         DB::commit();

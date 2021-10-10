@@ -56,13 +56,40 @@
                                         @foreach ($hari as $key => $val)
                                             <div class="row col-md-10">
                                                 <div class="col-md-2">
-                                                    <input type="checkbox" class="ml-3" name="hari_dibutuhkan[]"
-                                                        value="{{ $val->id }}"> {{ $val->hari->hari }}
+                                                    Pilih Hari<br>
+                                                    <input type="checkbox" class="ml-3" name="hari_dibutuhkan[]" value="{{ $val->id }}"> {{ $val->hari->hari }}
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input type="time" value="{{ $val->start_jam }}" readonly>
-                                                    <label>s/d</label>
-                                                    <input type="time" value="{{ $val->end_jam }}" readonly>
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            Pilih Jam Mulai
+                                                            <select class="form-control" name="time_start[]">
+                                                                    @foreach ($ketersediaan as $kts)
+                                                                        @if ($val->start_jam < $kts && $val->end_jam > $kts)
+                                                                            <option value="{{ $kts }}">{{ $kts }}</option>
+                                                                        @endif
+                                                                    @endforeach
+                                                            </select>
+                                                            <div class="mb-2"></div>
+                                                            Pilih Jam Selesai
+                                                            <select class="form-control" name="time_end[]">
+                                                                    @foreach ($ketersediaan as $kts)
+                                                                        @if ($val->start_jam < $kts && $val->end_jam > $kts)
+                                                                            <option value="{{ $kts }}">{{ $kts }}</option>
+                                                                        @endif
+                                                                    @endforeach
+                                                            </select>
+                                                            <div class="mb-3"></div>
+                                                        </div>
+                                                        <div class="col-8">
+                                                            Ketersediaan<br>
+                                                            <div class="d-flex">
+                                                                <input type="time" class="form-control" style="width:100px" value="{{ $val->start_jam }}" readonly>
+                                                                &nbsp;<label> s/d </label>&nbsp;
+                                                                <input type="time" class="form-control" style="width:100px" value="{{ $val->end_jam }}" readonly>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -160,20 +187,20 @@
             $('#sub_total').val(total);
         });
         // FUNCTION UNTUK CONVERT KE RUPIAH DI KEYUP
-        function convertRupiah(angka, prefix) {
-            var number_string = angka.replace(/[^,\d]/g, "").toString(),
-                split = number_string.split(","),
-                sisa = split[0].length % 3,
-                rupiah = split[0].substr(0, sisa),
-                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+        // function convertRupiah(angka, prefix) {
+        //     var number_string = angka.replace(/[^,\d]/g, "").toString(),
+        //         split = number_string.split(","),
+        //         sisa = split[0].length % 3,
+        //         rupiah = split[0].substr(0, sisa),
+        //         ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-            if (ribuan) {
-                separator = sisa ? "." : "";
-                rupiah += separator + ribuan.join(".");
-            }
-            rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
-            return prefix == undefined ? rupiah : rupiah ? prefix + rupiah : "";
-        }
+        //     if (ribuan) {
+        //         separator = sisa ? "." : "";
+        //         rupiah += separator + ribuan.join(".");
+        //     }
+        //     rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+        //     return prefix == undefined ? rupiah : rupiah ? prefix + rupiah : "";
+        // }
         // jumlah_jam.addEventListener('keydown', function(event) {
         //     console.log(jumlah_jam.value);
         //     $('#sub_total_view').empty();

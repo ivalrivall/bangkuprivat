@@ -57,15 +57,21 @@ class KelolaReservasiController extends Controller
   public function approve($id)
   {
     DB::beginTransaction();
+    // jika admin
     if(auth()->user()->level_id == 3){
       $approve = tbl_reservasi::find($id);
+      // jika status pembayaran reservasi
       if($approve->status_id == 8){
+      // ubah status pembelajaran sedang berlangsung
         $approve->status_id = 10;
       }else{
+          // status konfirmasi admin
         $approve->status_id = 4;
       }
+      // jika mentor
     }elseif(auth()->user()->level_id == 2){
       $approve = tbl_reservasi::find($id);
+      // ubah status konfirmasi mentor
       $approve->status_id = 5;
     }
     if($approve->save()){
