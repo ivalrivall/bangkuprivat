@@ -56,36 +56,43 @@
                                         @foreach ($hari as $key => $val)
                                             <div class="row col-md-10">
                                                 <div class="col-md-2">
-                                                    Pilih Hari<br>
-                                                    <input type="checkbox" class="ml-3" name="hari_dibutuhkan[]" value="{{ $val->id }}"> {{ $val->hari->hari }}
+                                                    <label>Pilih Hari</label>
+                                                    <div>
+                                                        <input type="checkbox" class="mr-2" name="hari_dibutuhkan[]" value="{{ $val->id }}"> {{ $val->hari->hari }}
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-8">
+                                                <div class="col-md-10">
                                                     <div class="row">
-                                                        <div class="col-4">
-                                                            Pilih Jam Mulai
-                                                            <select class="form-control" name="time_start[]">
-                                                                    @foreach ($ketersediaan as $kts)
-                                                                        @if ($val->start_jam < $kts && $val->end_jam > $kts)
-                                                                            <option value="{{ $kts }}">{{ $kts }}</option>
-                                                                        @endif
-                                                                    @endforeach
-                                                            </select>
-                                                            <div class="mb-2"></div>
-                                                            Pilih Jam Selesai
-                                                            <select class="form-control" name="time_end[]">
-                                                                    @foreach ($ketersediaan as $kts)
-                                                                        @if ($val->start_jam < $kts && $val->end_jam > $kts)
-                                                                            <option value="{{ $kts }}">{{ $kts }}</option>
-                                                                        @endif
-                                                                    @endforeach
-                                                            </select>
+                                                        <div class="col-5">
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <label>Pilih Jam Mulai</label>
+                                                                    <select class="form-control" style="width: 100px" name="time_start[]">
+                                                                            @foreach ($ketersediaan as $kts)
+                                                                                @if ($val->start_jam < $kts && $val->end_jam > $kts)
+                                                                                    <option value="{{ $kts }}">{{ $kts }}</option>
+                                                                                @endif
+                                                                            @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <label>Pilih Jam Selesai</label>
+                                                                    <select class="form-control" style="width: 100px" name="time_end[]">
+                                                                            @foreach ($ketersediaan as $kts)
+                                                                                @if ($val->start_jam < $kts && $val->end_jam > $kts)
+                                                                                    <option value="{{ $kts }}">{{ $kts }}</option>
+                                                                                @endif
+                                                                            @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
                                                             <div class="mb-3"></div>
                                                         </div>
-                                                        <div class="col-8">
-                                                            Ketersediaan<br>
+                                                        <div class="col-7">
+                                                            <label>Ketersediaan</label>
                                                             <div class="d-flex">
                                                                 <input type="time" class="form-control" style="width:100px" value="{{ $val->start_jam }}" readonly>
-                                                                &nbsp;<label> s/d </label>&nbsp;
+                                                                &nbsp;<label> sampai </label>&nbsp;
                                                                 <input type="time" class="form-control" style="width:100px" value="{{ $val->end_jam }}" readonly>
                                                             </div>
                                                         </div>
