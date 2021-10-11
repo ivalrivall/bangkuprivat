@@ -6,17 +6,17 @@ use Illuminate\Http\Request;
 use DB;
 use Redirect;
 use Carbon\Carbon;
-use App\models\User;
-use App\models\tbl_informasi;
-use App\models\tbl_detail_mentor;
-use App\models\tbl_reservasi;
-use App\models\detail_skill;
-use App\models\detail_hari;
-use App\models\master_kebutuhan;
-use App\models\detail_tipe_pengajaran;
-use App\models\pembayaran_reservasi;
-use App\models\ulasan_mentor;
-use App\models\detail_reservasi;
+use App\Models\User;
+use App\Models\tbl_informasi;
+use App\Models\tbl_detail_mentor;
+use App\Models\tbl_reservasi;
+use App\Models\detail_skill;
+use App\Models\detail_hari;
+use App\Models\master_kebutuhan;
+use App\Models\detail_tipe_pengajaran;
+use App\Models\pembayaran_reservasi;
+use App\Models\ulasan_mentor;
+use App\Models\detail_reservasi;
 use PhpParser\Node\Stmt\Foreach_;
 
 class UserReservasiController extends Controller
@@ -176,35 +176,67 @@ class UserReservasiController extends Controller
     $detail_hari = detail_hari::where('detail_mentor_id',$detail_mentor->id_detail_mentor)->get();
     $detail_reservasi = detail_reservasi::whereHas('reservasi', function($q) use ($detail_mentor) {
         $q->where('mentor_id', $detail_mentor->id_user)
-        ->whereNotIn('status_id', [10,5,8]);
+        ->whereIn('status_id', [10,5,8]);
     })->get();
-    // $current = strtotime('00.00');
-    // $end = strtotime('23.59');
+    // $current = strtotime('00:00:00');
+    // $end = strtotime('24:00:00');
     // $ketersediaan = [];
-    // foreach ($detail_hari as $key => $value) {
-    //     while ($current <= $end) {
-    //         $ketersediaan[] = date('H.i', $current);
-    //         $current = strtotime('+60 minutes', $current);
-    //     }
+    // while ($current <= $end) {
+    //     $ketersediaan[] = date('H:i:s', $current);
+    //     $current = strtotime('+60 minutes', $current);
     // }
     // foreach ($ketersediaan as $key => $value) {
     //     foreach ($detail_hari as $k => $dh) {
-    //         if ($dh->start_jam < $value && $dh->end_jam > $value) {
-    //             $kts[] = $value;
+    //         if ($value >= $dh->start_jam && $value <= $dh->end_jam) {
+    //             $detail_hari[$k]->ketersediaan .= $value.'-';
     //         }
     //     }
     // }
-    // dd($kts);
-    // foreach ($detail_reservasi as $drk => $dr) {
-    //     while ($current <= $end) {
-    //         // if ($hari->start_jam > $current) {
-    //             $ketersediaan[] = date('H.i', $current);
-    //         // }
-    //         // if ($hari->end_jam < $end) {
-    //             // $ketersediaan[] = date('H.i', $current);
-    //         // }
-    //         $current = strtotime('+60 minutes', $current);
+    // get ketersediaan
+    // foreach ($detail_hari as $key => $value) {
+    //     $value->ketersediaan = explode('-', $value->ketersediaan);
+    //     $value->ketersediaan = array_filter($value->ketersediaan);
+    // }
+    // $detail_hari = collect($detail_hari)->toArray();
+    // remove ketersediaan if any reservation
+    // if (count($detail_reservasi) > 0) {
+    //     // dd($detail_reservasi);
+    //     // dd($detail_hari);
+    //     $indexDeleted = [];
+    //     foreach ($detail_hari as $k => $v) {
+    //         $reservasi = collect($detail_reservasi)->filter(function($q) use ($v) {
+    //             return $q['hari_id'] == $v['hari_id'];
+    //         })->all();
+    //         $detail_hari[$k]['ketersediaan'] = collect($v['ketersediaan'])->map(function($item, $key) use ($detail_hari, $reservasi, $indexDeleted) {
+    //             $result = '';
+    //             foreach ($reservasi as $ri => $rv) {
+    //                 $result .= "$item";
+    //                 if ($item >= $rv->start_jam && $item <= $rv->end_jam) {
+    //                     // dd($item > $rv->start_jam);
+    //                     // dd($item);
+    //                     // dd($key);
+    //                     // dd($rv->start_jam);
+    //                     if ($item == $rv->start_jam || $item == $rv->end_jam) {
+    //                         // unset([$key]);
+    //                         // $result .= "$item";
+    //                         // $detail_hari[$key]['ketersediaan'] = array_merge($detail_hari[$key]['ketersediaan'], [$v]);
+    //                         // dd($detail_hari[$key]['ketersediaan'][$k]);
+    //                         $result .= "#";
+    //                         // unset($detail_hari[$key]['ketersediaan'][$k]);
+    //                         // $detail_hari[$key]['ketersediaan'] = array_merge($detail_hari[$key]['ketersediaan'], [$v]);
+    //                     } else if ($item > $rv->start_jam && $item < $rv->end_jam) {
+    //                         // unset($value->ketersediaan[$k]);
+    //                         $result .= "#";
+    //                         // $indexDeleted[] = $key;
+    //                         // unset($detail_hari[$key]['ketersediaan'][$k]);
+    //                         // $detail_hari[$key]['ketersediaan'] = array_merge($detail_hari[$key]['ketersediaan'], [$v]);
+    //                     }
+    //                 }
+    //             }
+    //             return $result;
+    //         })->toArray();
     //     }
+    //     dd($detail_hari);
     // }
     $detail_tipe_pengajaran = detail_tipe_pengajaran::where('detail_mentor_id',$detail_mentor->id_detail_mentor)->get();
     return view('reservasi_user.pengajuan_reservasi_user', compact('detail_mentor','detail_skill','detail_hari','jml_ulasan','ulasan_mentor','detail_tipe_pengajaran'));
