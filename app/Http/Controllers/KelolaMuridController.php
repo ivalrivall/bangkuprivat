@@ -11,7 +11,7 @@ use App\Models\detail_skill;
 use App\Models\detail_hari;
 use App\Models\status_transaksi;
 
-class kelolamuridController extends Controller
+class KelolaMuridController extends Controller
 {
     public function lihatdatauser()
     {
