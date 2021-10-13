@@ -290,7 +290,7 @@ class UserReservasiController extends Controller
 
   public function store(Request $request)
   {
-    //   dd(($request->time_start[0]));
+      dd(($request->all()));
       DB::beginTransaction();
       $sub_total = preg_replace("/[^0-9]/", "", $request->sub_total);
       if($request->kebutuhan == 99 && $request->kebutuhan_lainnya != null){

@@ -8,6 +8,14 @@
 <link rel="stylesheet" href="{{ url('/TemplateHome/plugins/fontawesome-free/css/all.min.css') }}">
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet"
+  href="{{ url('/TemplateHome/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+<link rel="stylesheet" href="{{ url('/TemplateHome/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url('/TemplateHome/plugins/jqvmap/jqvmap.min.css') }}">
+<link rel="stylesheet" href="{{ url('/TemplateHome/dist/css/adminlte.min.css') }}">
+<link rel="stylesheet" href="{{ url('/TemplateHome/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+<link rel="stylesheet" href="{{ url('/TemplateHome/plugins/daterangepicker/daterangepicker.css') }}">
+<link rel="stylesheet" href="{{ url('/TemplateHome/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}">
 <!-- DataTables -->
 <!-- <link rel="stylesheet" href="{{ url('/TemplateHome/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}"> -->
 <!-- <link rel="stylesheet" href="{{ url('/TemplateHome/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}"> -->
@@ -20,5 +28,8 @@
 
 <!-- REVISI DATATABLE NYA NIH -->
 <link href="{{ url('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <!-- SAMPE SINI REVISI DATATABLE -->
+{{-- <link rel="stylesheet" type="text/css" href="{{ url('/TemplateHome/plugins/daterangepicker/daterangepicker.css') }}" /> --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="{{ url('/TemplateHome/plugins/jquery/jquery.min.js') }}"></script>
+
