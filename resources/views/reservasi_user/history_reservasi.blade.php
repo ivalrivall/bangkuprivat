@@ -368,7 +368,7 @@
     $.ajax({
       async: false,
       type: 'get',
-      url: '{{url(' / get_data_reservasi ')}}',
+      url: '{{url('/get_data_reservasi')}}',
       data: {
         _token: '{{ csrf_token() }}',
         id_reservasi: id_reservasi
@@ -404,7 +404,7 @@
     $.ajax({
       async: false,
       type: 'get',
-      url: '{{url(' / get_data_pembayaran_user ')}}',
+      url: '{{url('/get_data_pembayaran_user')}}',
       data: {
         _token: '{{ csrf_token() }}',
         id_reservasi: id_reservasi
@@ -436,7 +436,7 @@
     $.ajax({
       async: false,
       type: 'get',
-      url: '{{url(' / get_datamentor / ulas ')}}',
+      url: '{{url('/get_datamentor/ulas')}}',
       data: {
         _token: '{{ csrf_token() }}',
         id_reservasi: id_reservasi
