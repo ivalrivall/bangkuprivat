@@ -191,8 +191,8 @@
           <div class="form-group row text-center">
               <label class="col-md-12 col-form-label">Bukti Transfer</label><br>
               <div class="col-md-12">
-                  <a id="a_img_bukti" href="{{ url('/Pembayaran_Reservasi/') }}" target="blank_">
-                    <img id="img_bukti" src="{{ url('/Pembayaran_Reservasi/') }}" alt="" style="min-width:250px;min-height:250px; max-width:250px;max-height:250px;">
+                  <a id="a_img_bukti" href="https://dummyimage.com/300/09f/fff.png" target="blank_">
+                    <img id="img_bukti" src="https://dummyimage.com/300/09f/fff.png" alt="" style="min-width:250px;min-height:250px; max-width:250px;max-height:250px;">
                   </a>
               </div>
           </div>
