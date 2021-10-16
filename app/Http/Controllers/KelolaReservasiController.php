@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Redirect;
+use Carbon\Carbon;
 use App\Models\tbl_reservasi;
 use App\Models\status_transaksi;
 use App\Models\detail_skill;
@@ -121,8 +122,18 @@ class KelolaReservasiController extends Controller
 
   public function reservasi_selesai($id)
   {
-    DB::beginTransaction();
+    $now = Carbon::now('Asia/Jakarta')->toDateTimeString();
     $selesai = tbl_reservasi::find($id);
+    $detail_reservasi = detail_reservasi::where('reservasi_id', $id)->first();
+    if ($detail_reservasi) {
+      $reservasionDate = new Carbon($detail_reservasi->tanggal);
+      $diff = $reservasionDate->diffInHours($now, false);
+      if ($diff < 0) {
+        DB::rollback();
+        return Redirect::back()->with('failed', 'Reservasi Belum Selesai, Mohon Menunggu !!!');
+      }
+    }
+    DB::beginTransaction();
     $selesai->status_id = 11;
     if($selesai->save()){
       DB::commit();
