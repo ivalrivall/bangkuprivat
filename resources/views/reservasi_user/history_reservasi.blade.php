@@ -368,7 +368,7 @@
     $.ajax({
       async: false,
       type: 'get',
-      url: '/get_data_reservasi',
+      url:'{{url('/get_data_reservasi')}}',
       data: {
         _token: '{{ csrf_token() }}',
         id_reservasi: id_reservasi
