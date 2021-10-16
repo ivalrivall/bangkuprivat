@@ -51,8 +51,10 @@
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
-                  <label for="">Hari Pembelajaran dan Jam Kesediaan</label>
-                  <label>Pilih Hari</label>
+                  <label for="">Pilih Hari Pembelajaran dan Jam Kesediaan</label>
+                  <input type="hidden" id="selected_day_id" name="selected_day_id" readonly>
+                  <input type="hidden" id="selected_detail_day_id" name="selected_detail_day_id" readonly>
+                  <input type="hidden" id="hari_dibutuhkan" name="hari_dibutuhkan" readonly>
                   <select class="form-control" style="width: 100px" name="hari_dibutuhkan_select" id="day_request"
                     onchange="showDiv(this)">
                     <option value="select" disabled selected>Pilih</option>
@@ -78,7 +80,7 @@
                         <div class="col-6">
                           <label>Pilih Jam Mulai</label>
                           <select class="form-control" style="width: 100px;display:none" name="time_start"
-                            id="time_start-{{$val->hari->id}}">
+                            id="time_start-{{$val->hari->id}}" onchange="getTotalHour(this)">
                             <option value="select" disabled selected>Pilih</option>
                             @foreach ($ketersediaan as $kts)
                             @if ($val->start_jam < $kts && $val->end_jam > $kts)
@@ -90,7 +92,7 @@
                         <div class="col-6">
                           <label>Pilih Jam Selesai</label>
                           <select class="form-control" style="width: 100px;display:none" name="time_end"
-                            id="time_end-{{$val->hari->id}}">
+                            id="time_end-{{$val->hari->id}}" onchange="getTotalHour(this)">
                             <option value="select" disabled selected>Pilih</option>
                             @foreach ($ketersediaan as $kts)
                             @if ($val->start_jam < $kts && $val->end_jam > $kts)
@@ -109,7 +111,8 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="far fa-calendar"></i></span>
                           </div>
-                          <input type="text" name="date" id="date" autocomplete="off"
+                          <input type="text" autocomplete="off"
+                            onchange="getTotalHour(this)"
                             class="form-control float-right datepicker-{{$val->hari->hari}}">
                         </div>
                       </div>
@@ -117,9 +120,9 @@
                   </div>
                 </div>
                 @endforeach
+                <input type="hidden" name="date" id="date">
               </div>
               <div class="form-group row">
-                <!-- <input id="jumlah_hari_dipilih" type="hidden" name="jumlah_hari_dipilih" readonly> -->
                 <div class="col-md-12" style="margin-bottom:1%;">
                   <label for="">Tipe Pengajaran Yang Anda Perlukan</label>
                   <br>
@@ -133,11 +136,6 @@
                   </div>
                   @endforeach
                 </div>
-                <div class="col-md-12 mb-3">
-                  <label for="harga_jam">Jumlah Jam Yang Anda Perlukan</label>
-                  <input id="jumlah_jam" class="col-md-12 form-control" type="number" name="jumlah_jam"
-                    placeholder="Jumlah Jam Yang Anda Perlukan" required>
-                </div>
               </div>
               <hr>
               <div class="form-group row">
@@ -146,6 +144,7 @@
                       dengan Harga Reservasi /Jam.</i></p>
                   <h3 id="sub_total_view"><b>Sub Total : Rp. 0</b></h3>
                   <input id="sub_total" type="hidden" name="sub_total" readonly>
+                  <input id="jumlah_jam" type="hidden" name="jumlah_jam" readonly>
                 </div>
               </div>
               <hr>
@@ -167,17 +166,10 @@
 </div>
 <script type="text/javascript">
   $(document).ready(function () {
-    console.log("Ready !");
-    var availableDates = ["9-10-2021", "14-10-2021", "15-10-2021"];
+    this.datePicker
+  });
 
-    function available(date) {
-      dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-      if ($.inArray(dmy, availableDates) != -1) {
-        return [true, "", "Available"];
-      } else {
-        return [false, "", "unAvailable"];
-      }
-    }
+  function datePicker() {
     $('.datepicker-Senin').datepicker({
       format: 'yyyy-mm-dd',
       startDate: '-1',
@@ -186,7 +178,7 @@
       language: 'id-ID'
     }).on("changeDate", function(e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
-      document.getElementById(`date`).value = e.date;
+      document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
     $('.datepicker-Selasa').datepicker({
       format: 'yyyy-mm-dd',
@@ -196,7 +188,7 @@
       language: 'id-ID'
     }).on("changeDate", function(e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
-      document.getElementById(`date`).value = e.date;
+      document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
     $('.datepicker-Rabu').datepicker({
       format: 'yyyy-mm-dd',
@@ -206,7 +198,7 @@
       language: 'id-ID'
     }).on("changeDate", function(e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
-      document.getElementById(`date`).value = e.date;
+      document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
     $('.datepicker-Kamis').datepicker({
       format: 'yyyy-mm-dd',
@@ -216,7 +208,7 @@
       language: 'id-ID'
     }).on("changeDate", function(e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
-      document.getElementById(`date`).value = e.date;
+      document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
     $('.datepicker-Jumat').datepicker({
       format: 'yyyy-mm-dd',
@@ -226,7 +218,7 @@
       language: 'id-ID'
     }).on("changeDate", function(e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
-      document.getElementById(`date`).value = e.date;
+      document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
     $('.datepicker-Sabtu').datepicker({
       format: 'yyyy-mm-dd',
@@ -236,7 +228,7 @@
       language: 'id-ID'
     }).on("changeDate", function(e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
-      document.getElementById(`date`).value = e.date;
+      document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
     $('.datepicker-Minggu').datepicker({
       format: 'yyyy-mm-dd',
@@ -246,9 +238,9 @@
       language: 'id-ID'
     }).on("changeDate", function(e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
-      document.getElementById(`date`).value = e.date;
+      document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
-  });
+  }
 
   function showDiv(val) {
     for (let i = 1; i <= 7; i++) {
@@ -273,17 +265,11 @@
         availibility.style.display = 'none'
       }
     }
-    // console.log('00', document.getElementById(`time_start-0`))
-    // document.getElementById(`time_start-1`).style.display = 'block';
-    // document.getElementById(`time_start-2`).style.display = 'block';
-    // document.getElementById(`time_start-3`).style.display = 'block';
-    // document.getElementById(`time_start-4`).style.display = 'block';
-    // document.getElementById(`time_start-5`).style.display = 'block';
-    // document.getElementById(`time_start-6`).style.display = 'block';
-    // document.getElementById(`time_start-7`).style.display = 'block';
-
     const dayRequest = document.getElementById("day_request").value;
     const idDay = dayRequest.split('-')[1];
+    const detailDayId = dayRequest.split('-')[0];
+    document.getElementsByName('selected_day_id').value = idDay
+    document.getElementsByName('selected_detail_day_id').value = detailDayId
     document.getElementById(`time_start-${idDay}`).style.display = 'block';
     document.getElementById(`time_end-${idDay}`).style.display = 'block';
     document.getElementById(`select_time-${idDay}`).style.display = 'block';
@@ -291,6 +277,56 @@
     document.getElementById(`select_availibility-${idDay}`).style.display = 'block';
   }
 
+  function getTotalHour(val) {
+    const date = document.getElementById('date').value
+    const idDay = document.getElementsByName('selected_day_id').value
+    const detailDayId = document.getElementsByName('selected_detail_day_id').value
+    this.datePicker()
+    $('#date').val(`${date}`);
+    $('#selected_day_id').val(`${idDay}`);
+    $('#selected_detail_day_id').val(`${detailDayId}`);
+    $('#hari_dibutuhkan').val(`${detailDayId}`);
+    let timeStart = document.getElementById(`time_start-${idDay}`).value.replace('.', ':');
+    let timeEnd = document.getElementById(`time_end-${idDay}`).value.replace('.', ':');
+    if (timeStart !== 'select' && timeEnd !== 'select' && date !== '') {
+      // console.log("idDay", idDay)
+      const jumlah_hari_dipilih = 1;
+      const get_harga = $('#harga_perjam').val();
+      // console.log('timeStart', timeStart)
+      // console.log('timeEnd', timeEnd)
+      const formatedStartDate = `${date} ${timeStart}:00`;
+      const formatedEndDate = `${date} ${timeEnd}:00`;
+      const start = moment(formatedStartDate).format('YYYY-MM-DD HH:mm:ss')
+      const end = moment(formatedEndDate).format('YYYY-MM-DD HH:mm:ss')
+      // console.log("start", start)
+      // console.log("end", end)
+      // calculate total duration
+      const duration = moment(end).diff(moment(start), 'hours');
+      // console.log('duration', duration);
+      // console.log('===========');
+      const jumlah = duration;
+      if (jumlah <= 0) {
+        return alert('Pilihan jam selesai lebih awal, silahkan ganti ke jam ketersediaan lain')
+      }
+      $('#jumlah_jam').val(`${duration}`);
+      let sub_total = jumlah_hari_dipilih * jumlah * get_harga;
+
+      sub_total = sub_total.toString(),
+        sisa = sub_total.length % 3,
+        rupiah = sub_total.substr(0, sisa),
+        ribuan = sub_total.substr(sisa).match(/\d{3}/gi);
+      if (ribuan) {
+        separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+      }
+      total = 'Rp. ' + rupiah;
+      console.log(total);
+      $('#sub_total_view').empty();
+      $('#sub_total_view').append('<h3 id="sub_total_view"><b>Sub Total : ' + total + '</b></h3>');
+      $('#sub_total').empty();
+      $('#sub_total').val(total);
+    }
+  }
 
   function radio(obj) {
     if (obj == 99) {
@@ -302,68 +338,64 @@
     }
   }
   // // get value pilihan hari yang di pilih
-  var countChecked = function () {
-    // var n = $("input:checked").length;
-    // $('#jumlah_hari_dipilih').val(n);
-    $('#jumlah_jam').val("");
-    $('#sub_total_view').empty();
-    $('#sub_total_view').append('<h3 id="sub_total_view"><b>Sub Total : Rp. 0</b></h3>');
-  };
-  countChecked();
-  $("input[type=checkbox]").on("click", countChecked);
+  // var countChecked = function () {
+  //   // var n = $("input:checked").length;
+  //   // $('#jumlah_hari_dipilih').val(n);
+  //   $('#jumlah_jam').val("");
+  //   $('#sub_total_view').empty();
+  //   $('#sub_total_view').append('<h3 id="sub_total_view"><b>Sub Total : Rp. 0</b></h3>');
+  // };
+  // countChecked();
+  // $("input[type=checkbox]").on("click", countChecked);
 
   // get form input jumlah jam
-  var jumlah_jam = document.getElementById("jumlah_jam");
-  var time_start = document.getElementById("time_start");
-  var time_end = document.getElementById("time_end");
+  // var jumlah_jam = document.getElementById("jumlah_jam");
+  // var time_start = document.getElementById("time_start");
+  // var time_end = document.getElementById("time_end");
 
-  // time_start.addEventListener("selected")
-  time_start.addEventListener('change', function () {
-    // alert(this.value);
-    var jumlah_hari_dipilih = $('input[name="hari_dibutuhkan[]"]:checked').length;
-    var get_harga = $('#harga_perjam').val();
-    jumlah_jam.value = this.value;
-    var jumlah = jumlah_jam.value;
-    // if
-    var sub_total = jumlah_hari_dipilih * jumlah * get_harga;
-    sub_total = sub_total.toString(),
-      sisa = sub_total.length % 3,
-      rupiah = sub_total.substr(0, sisa),
-      ribuan = sub_total.substr(sisa).match(/\d{3}/gi);
-    if (ribuan) {
-      separator = sisa ? '.' : '';
-      rupiah += separator + ribuan.join('.');
-    }
-    total = 'Rp. ' + rupiah;
-    console.log(total);
-    $('#sub_total_view').empty();
-    $('#sub_total_view').append('<h3 id="sub_total_view"><b>Sub Total : ' + total + '</b></h3>');
-    $('#sub_total').empty();
-    $('#sub_total').val(total);
-  }, false);
-  jumlah_jam.addEventListener("keyup", function (e) {
-    var jumlah_hari_dipilih = $('input[name="hari_dibutuhkan[]"]:checked').length;
-    var get_harga = $('#harga_perjam').val();
-    // var jumlah_hari_dipilih = $('#jumlah_hari_dipilih').val();
-    jumlah_jam.value = this.value;
-    var jumlah = jumlah_jam.value;
-    var sub_total = jumlah_hari_dipilih * jumlah * get_harga;
+  // time_start.addEventListener('change', function () {
+  //   var jumlah_hari_dipilih = $('input[name="hari_dibutuhkan[]"]:checked').length;
+  //   var get_harga = $('#harga_perjam').val();
+  //   jumlah_jam.value = this.value;
+  //   var jumlah = jumlah_jam.value;
+  //   var sub_total = jumlah_hari_dipilih * jumlah * get_harga;
+  //   sub_total = sub_total.toString(),
+  //     sisa = sub_total.length % 3,
+  //     rupiah = sub_total.substr(0, sisa),
+  //     ribuan = sub_total.substr(sisa).match(/\d{3}/gi);
+  //   if (ribuan) {
+  //     separator = sisa ? '.' : '';
+  //     rupiah += separator + ribuan.join('.');
+  //   }
+  //   total = 'Rp. ' + rupiah;
+  //   console.log(total);
+  //   $('#sub_total_view').empty();
+  //   $('#sub_total_view').append('<h3 id="sub_total_view"><b>Sub Total : ' + total + '</b></h3>');
+  //   $('#sub_total').empty();
+  //   $('#sub_total').val(total);
+  // }, false);
+  // jumlah_jam.addEventListener("keyup", function (e) {
+  //   var jumlah_hari_dipilih = $('input[name="hari_dibutuhkan[]"]:checked').length;
+  //   var get_harga = $('#harga_perjam').val();
+  //   jumlah_jam.value = this.value;
+  //   var jumlah = jumlah_jam.value;
+  //   var sub_total = jumlah_hari_dipilih * jumlah * get_harga;
 
-    sub_total = sub_total.toString(),
-      sisa = sub_total.length % 3,
-      rupiah = sub_total.substr(0, sisa),
-      ribuan = sub_total.substr(sisa).match(/\d{3}/gi);
-    if (ribuan) {
-      separator = sisa ? '.' : '';
-      rupiah += separator + ribuan.join('.');
-    }
-    total = 'Rp. ' + rupiah;
-    console.log(total);
-    $('#sub_total_view').empty();
-    $('#sub_total_view').append('<h3 id="sub_total_view"><b>Sub Total : ' + total + '</b></h3>');
-    $('#sub_total').empty();
-    $('#sub_total').val(total);
-  });
+  //   sub_total = sub_total.toString(),
+  //     sisa = sub_total.length % 3,
+  //     rupiah = sub_total.substr(0, sisa),
+  //     ribuan = sub_total.substr(sisa).match(/\d{3}/gi);
+  //   if (ribuan) {
+  //     separator = sisa ? '.' : '';
+  //     rupiah += separator + ribuan.join('.');
+  //   }
+  //   total = 'Rp. ' + rupiah;
+  //   console.log(total);
+  //   $('#sub_total_view').empty();
+  //   $('#sub_total_view').append('<h3 id="sub_total_view"><b>Sub Total : ' + total + '</b></h3>');
+  //   $('#sub_total').empty();
+  //   $('#sub_total').val(total);
+  // });
   // FUNCTION UNTUK CONVERT KE RUPIAH DI KEYUP
   // function convertRupiah(angka, prefix) {
   //     var number_string = angka.replace(/[^,\d]/g, "").toString(),

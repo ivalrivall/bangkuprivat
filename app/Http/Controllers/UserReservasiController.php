@@ -290,7 +290,6 @@ class UserReservasiController extends Controller
 
   public function store(Request $request)
   {
-      // dd($request->all());
       DB::beginTransaction();
       $sub_total = preg_replace("/[^0-9]/", "", $request->sub_total);
       if($request->kebutuhan == 99 && $request->kebutuhan_lainnya != null){
@@ -312,13 +311,18 @@ class UserReservasiController extends Controller
       $pengajuan_reservasi->status_id = 3;
       if($pengajuan_reservasi->save()){
         $hari = $request->hari_dibutuhkan;
-        $detail_hari = detail_hari::whereIn('id',$hari)->get();
+        if (is_array($hari)) {
+          $detail_hari = detail_hari::whereIn('id',$hari)->get();
+        } else {
+          $detail_hari = detail_hari::whereIn('id',[$hari])->get();
+        }
         foreach($detail_hari as $key => $val){
           $detail_reservasi = new detail_reservasi;
           $detail_reservasi->reservasi_id = $pengajuan_reservasi->id;
           $detail_reservasi->hari_id = $val->hari_id;
           $detail_reservasi->start_jam = str_replace('.00', ':', $request->time_start[$key]).'00:00';
           $detail_reservasi->end_jam = str_replace('.00', ':', $request->time_end[$key]).'00:00';
+          $detail_reservasi->tanggal = $request->date;
           $detail_reservasi->save();
         }
         DB::commit();

@@ -12,8 +12,8 @@
 <script src="{{ url('/TemplateHome/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <script src="{{ url('/TemplateHome/plugins/moment/moment.min.js') }}"></script>
 {{-- <script src="{{ url('/TemplateHome/plugins/daterangepicker/daterangepicker.js') }}"></script> --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.id.min.js" integrity="sha512-zHDWtKP91CHnvBDpPpfLo9UsuMa02/WgXDYcnFp5DFs8lQvhCe2tx56h2l7SqKs/+yQCx4W++hZ/ABg8t3KH/Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ url('/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ url('/vendor/bootstrap-datepicker/bootstrap-datepicker.id.min.js') }}"></script>
 <script src="{{ url('/TemplateHome/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <script src="{{ url('/TemplateHome/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
 <script src="{{ url('/TemplateHome/plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
@@ -42,6 +42,8 @@
 <script src="{{ url('/TemplateHome/dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ url('/TemplateHome/dist/js/demo.js') }}"></script>
+{{-- Lodash --}}
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 <!-- page script -->
 <!-- <script>
     $(function() {
