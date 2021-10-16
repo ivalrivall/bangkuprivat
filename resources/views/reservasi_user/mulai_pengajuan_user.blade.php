@@ -83,7 +83,7 @@
                             id="time_start-{{$val->hari->id}}" onchange="getTotalHour(this)">
                             <option value="select" disabled selected>Pilih</option>
                             @foreach ($ketersediaan as $kts)
-                            @if ($val->start_jam < $kts && $val->end_jam > $kts)
+                            @if ($val->start_jam <= $kts && $val->end_jam > $kts)
                               <option value="{{ $kts }}">{{ $kts }}</option>
                               @endif
                               @endforeach
@@ -95,7 +95,7 @@
                             id="time_end-{{$val->hari->id}}" onchange="getTotalHour(this)">
                             <option value="select" disabled selected>Pilih</option>
                             @foreach ($ketersediaan as $kts)
-                            @if ($val->start_jam < $kts && $val->end_jam > $kts)
+                            @if ($val->start_jam < $kts && $val->end_jam >= $kts)
                               <option value="{{ $kts }}">{{ $kts }}</option>
                               @endif
                               @endforeach
@@ -111,8 +111,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="far fa-calendar"></i></span>
                           </div>
-                          <input type="text" autocomplete="off"
-                            onchange="getTotalHour(this)"
+                          <input type="text" autocomplete="off" onchange="getTotalHour(this)"
                             class="form-control float-right datepicker-{{$val->hari->hari}}">
                         </div>
                       </div>
@@ -176,7 +175,7 @@
       daysOfWeekDisabled: "0,2,3,4,5,6",
       todayHighlight: true,
       language: 'id-ID'
-    }).on("changeDate", function(e) {
+    }).on("changeDate", function (e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
       document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
@@ -186,7 +185,7 @@
       daysOfWeekDisabled: "0,1,3,4,5,6",
       todayHighlight: true,
       language: 'id-ID'
-    }).on("changeDate", function(e) {
+    }).on("changeDate", function (e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
       document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
@@ -196,7 +195,7 @@
       daysOfWeekDisabled: "0,1,2,4,5,6",
       todayHighlight: true,
       language: 'id-ID'
-    }).on("changeDate", function(e) {
+    }).on("changeDate", function (e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
       document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
@@ -206,7 +205,7 @@
       daysOfWeekDisabled: "0,1,2,3,5,6",
       todayHighlight: true,
       language: 'id-ID'
-    }).on("changeDate", function(e) {
+    }).on("changeDate", function (e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
       document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
@@ -216,7 +215,7 @@
       daysOfWeekDisabled: "0,1,2,3,4,6",
       todayHighlight: true,
       language: 'id-ID'
-    }).on("changeDate", function(e) {
+    }).on("changeDate", function (e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
       document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
@@ -226,7 +225,7 @@
       daysOfWeekDisabled: "0,1,2,3,4,5",
       todayHighlight: true,
       language: 'id-ID'
-    }).on("changeDate", function(e) {
+    }).on("changeDate", function (e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
       document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
@@ -236,7 +235,7 @@
       daysOfWeekDisabled: "1,2,3,4,5,6",
       todayHighlight: true,
       language: 'id-ID'
-    }).on("changeDate", function(e) {
+    }).on("changeDate", function (e) {
       // console.log('e change date', moment(e.date).format('YYYY-MM-DD'))
       document.getElementById(`date`).value = moment(e.date).format('YYYY-MM-DD');
     });
@@ -292,10 +291,9 @@
       // console.log("idDay", idDay)
       const jumlah_hari_dipilih = 1;
       const get_harga = $('#harga_perjam').val();
-      // console.log('timeStart', timeStart)
       // console.log('timeEnd', timeEnd)
-      const formatedStartDate = `${date} ${timeStart}:00`;
-      const formatedEndDate = `${date} ${timeEnd}:00`;
+      const formatedStartDate = `${date} ${timeStart}`;
+      const formatedEndDate = `${date} ${timeEnd}`;
       const start = moment(formatedStartDate).format('YYYY-MM-DD HH:mm:ss')
       const end = moment(formatedEndDate).format('YYYY-MM-DD HH:mm:ss')
       // console.log("start", start)

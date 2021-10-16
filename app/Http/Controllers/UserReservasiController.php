@@ -260,6 +260,11 @@ class UserReservasiController extends Controller
   {
       $data_mentor = tbl_detail_mentor::find($id);
       $hari = detail_hari::where('detail_mentor_id',$id)->get();
+      // $hari = $hari->map(function($q) {
+      //   $q->start_jam = str_replace(':','.', $q->start_jam);
+      //   $q->end_jam = str_replace(':','.', $q->end_jam);
+      //   return $q;
+      // });
       $tipe_pengajaran = detail_tipe_pengajaran::where('detail_mentor_id',$id)->get();
       $kebutuhan = master_kebutuhan::whereIn('id',[1,2,3])->get();
       // keterisian berdasarkan status: Pembelajaran Sedang Berlangsung,Konfirmasi Mentor,Konfirmasi Admin
@@ -267,17 +272,17 @@ class UserReservasiController extends Controller
         ->orderby('id','desc')
         ->get();
 
-        $default = $request->default ?? '19.00';
+        $default = $request->default ?? '19:00';
         $interval = $request->interval ?? '+60 minutes';
         $output = [];
 
-        $current = strtotime('00.00');
-        $end = strtotime('23.59');
+        $current = strtotime('00:00');
+        $end = strtotime('23:59');
 
         foreach ($hari as $key => $value) {
             while ($current <= $end) {
                 // if ($hari->start_jam > $current) {
-                    $ketersediaan[] = date('H.i', $current);
+                    $ketersediaan[] = date('H:i:s', $current);
                 // }
                 // if ($hari->end_jam < $end) {
                     // $ketersediaan[] = date('H.i', $current);
@@ -320,8 +325,10 @@ class UserReservasiController extends Controller
           $detail_reservasi = new detail_reservasi;
           $detail_reservasi->reservasi_id = $pengajuan_reservasi->id;
           $detail_reservasi->hari_id = $val->hari_id;
-          $detail_reservasi->start_jam = str_replace('.00', ':', $request->time_start[$key]).'00:00';
-          $detail_reservasi->end_jam = str_replace('.00', ':', $request->time_end[$key]).'00:00';
+          // $detail_reservasi->start_jam = str_replace('.00', ':', $request->time_start[$key]).'00:00';
+          // $detail_reservasi->end_jam = str_replace('.00', ':', $request->time_end[$key]).'00:00';
+          $detail_reservasi->start_jam = $request->time_start;
+          $detail_reservasi->end_jam = $request->time_end;
           $detail_reservasi->tanggal = $request->date;
           $detail_reservasi->save();
         }
