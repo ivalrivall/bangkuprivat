@@ -137,7 +137,7 @@ function reject(id_pengajuan) {
     $.ajax({
          async: false,
          type:'get',
-         url:'/get_data_pengajuanmentor',
+         url: `{{ url('/get_data_pengajuanmentor') }}`
          data:{ _token : '{{ csrf_token() }}',
               id_pengajuan : id_pengajuan }
          ,success:function(response){
