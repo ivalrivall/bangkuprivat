@@ -360,7 +360,8 @@
   </div>
 </div>
 <script type="text/javascript">
-  $(document).ready(function () {});
+  $(document).ready(function () {
+  });
 
   let id_reservasi = document.getElementById('idBayar').value;
 
@@ -400,6 +401,7 @@
   }
 
   function cek_pembayaran(obj) {
+    const url = "{{ env('MIX_APP_URL') }}"
     var id_reservasi = obj;
     $.ajax({
       async: false,
@@ -414,9 +416,9 @@
         if (respon.response == 'success') {
           var data = respon.data_pembayaran;
           if (data.path_bukti != null) {
-            var fhoto = "/Pembayaran_Reservasi/" + data.path_bukti + "/" + data.bukti_transfer;
+            var fhoto = url + "/Pembayaran_Reservasi/" + data.path_bukti + "/" + data.bukti_transfer;
           } else {
-            var fhoto = "/TemplateHome/dist/img/user.jpg";
+            var fhoto = url + "/TemplateHome/dist/img/user.jpg";
           }
           var atas_nama_pengirim = data.atas_nama_pengirim;
           var asal_bank = data.asal_bank;
