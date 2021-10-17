@@ -126,9 +126,9 @@ class KelolaReservasiController extends Controller
     $selesai = tbl_reservasi::find($id);
     $detail_reservasi = detail_reservasi::where('reservasi_id', $id)->first();
     if ($detail_reservasi) {
-      $reservasionDate = new Carbon($detail_reservasi->tanggal);
-      $diff = $reservasionDate->diffInHours($now, false);
-      if ($diff < 0) {
+      $reservasionDate = new Carbon("$detail_reservasi->tanggal $detail_reservasi->end_jam");
+      $diff = $reservasionDate->diffInMinutes($now, false);
+      if ($diff <= 0) {
         DB::rollback();
         return Redirect::back()->with('failed', 'Reservasi Belum Selesai, Mohon Menunggu !!!');
       }
