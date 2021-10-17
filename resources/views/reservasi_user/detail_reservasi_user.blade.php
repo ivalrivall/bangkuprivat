@@ -177,6 +177,14 @@
               </div><br>
               <div class="row ml-3">
                 <div class="col-md-12 ml-5">
+                  <a><b>Tanggal Reservasi</b></a>
+                </div>
+                <div class="col-md-12 ml-5">
+                  <a class="col-md-6">{{$jadwal_reservasi[0]->tanggal}}</a>
+                </div>
+              </div><br>
+              <div class="row ml-3">
+                <div class="col-md-12 ml-5">
                   <a><b>Total Harga</b></a>
                 </div>
                 <div class="col-md-12 ml-5">
