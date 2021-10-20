@@ -1,4 +1,4 @@
-<p align="center"><a href="https://bangkuprivat.ivalpha.com" target="_blank"><img src="https://bangkuprivat.ivalpha.com/public/TemplateHome/dist/img/logo_BP.png" style="width:300px;height:45px"></a></p>
+<p align="center"><a href="https://bangkuprivat.ivalpha.com" target="_blank"><img src="https://bangkuprivat.ivalpha.com/public/landingpage/assets/img/logo_BP-bgwhite.png" style="width:300px;height:45px"></a></p>
 
 ## About BangkuPrivat
 
