@@ -7,7 +7,6 @@
 <meta name="robots" content="index, follow">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="language" content="English">
-<meta name="revisit-after" content="10 days">
 <meta name="author" content="Ival">
 
 <!-- Open Graph / Facebook -->
