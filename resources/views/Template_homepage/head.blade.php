@@ -1,6 +1,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Bangku Privat | Temukan Mentor Pilihan Anda atau Bergabung Menjadi Mentor Kami</title>
+<meta name="title" content="Bangku Kelas">
+<meta name="description" content="Sistem reservasi BangkuKelas, anda bisa mencari mentor berkualitas untuk pembelajaran secara online atau offline di dengan mudah dimanapun dan kapanpun">
+<meta name="keywords" content="elearning,  online, offline, learning, mentor, guru, reservasi murah, pembelajaran, les, privat, les privat">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
+<meta name="revisit-after" content="10 days">
+<meta name="author" content="Ival">
 <link rel="stylesheet" href="{{ url('/leftsidebar/styleleftsidebar.css') }}">
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
