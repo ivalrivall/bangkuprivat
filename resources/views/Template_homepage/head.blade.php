@@ -15,14 +15,14 @@
 <meta property="og:url" content="https://bangkuprivat.ivalpha.com/">
 <meta property="og:title" content="Bangku Privat | Temukan mentor pilihan anda atau bergabung menjadi mentor kami">
 <meta property="og:description" content="Sistem reservasi BangkuKelas, anda bisa mencari mentor berkualitas untuk pembelajaran secara online atau offline di dengan mudah dimanapun dan kapanpun">
-<meta property="og:image" content="https://bangkuprivat.ivalpha.com/public/landingpage/assets/img/logo_BP-bgwhite.png">
+<meta property="og:image" content="https://bangkuprivat.ivalpha.com/public/images/logoBP-bgwhite.jpeg">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://bangkuprivat.ivalpha.com/">
 <meta property="twitter:title" content="Bangku Privat | Temukan mentor pilihan anda atau bergabung menjadi mentor kami">
 <meta property="twitter:description" content="Sistem reservasi BangkuKelas, anda bisa mencari mentor berkualitas untuk pembelajaran secara online atau offline di dengan mudah dimanapun dan kapanpun">
-<meta property="twitter:image" content="https://bangkuprivat.ivalpha.com/public/landingpage/assets/img/logo_BP-bgwhite.png">
+<meta property="twitter:image" content="https://bangkuprivat.ivalpha.com/public/images/logoBP-bgwhite.jpeg">
 
 <link rel="stylesheet" href="{{ url('/leftsidebar/styleleftsidebar.css') }}">
 <!-- Tell the browser to be responsive to screen width -->
