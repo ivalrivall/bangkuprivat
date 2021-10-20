@@ -3,7 +3,7 @@
 <title>Bangku Privat | Temukan Mentor Pilihan Anda atau Bergabung Menjadi Mentor Kami</title>
 <meta name="title" content="Bangku Privat | Temukan mentor pilihan anda atau bergabung menjadi mentor kami">
 <meta name="description" content="Sistem reservasi BangkuKelas, anda bisa mencari mentor berkualitas untuk pembelajaran secara online atau offline di dengan mudah dimanapun dan kapanpun">
-<meta name="keywords" content="elearning,  online, offline, learning, mentor, guru, reservasi murah, pembelajaran, les, privat, les privat">
+<meta name="keywords" content="elearning, online, offline, learning, mentor, guru, reservasi murah, pembelajaran, les, privat, les privat">
 <meta name="robots" content="index, follow">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="language" content="English">
