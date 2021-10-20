@@ -15,6 +15,9 @@ Ini adalah sistem untuk pemesanan dan manajemen reservasi mentor, aplikasi ini d
 - Jalankan ```php artisan migrate```
 - Jalankan ```php artisan optimize:clear```
 
+### Link Demo
+[https://bangkuprivat.ivalpha.com](https://bangkuprivat.ivalpha.com)
+
 ## License
 
 BangkuPrivat is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
