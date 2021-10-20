@@ -10,7 +10,7 @@ Ini adalah sistem untuk pemesanan dan manajemen reservasi mentor, aplikasi ini d
 - Jalankan ```npm i```
 - Jalankan ```composer i```
 - Jalankan ```php artisan key:generate```
-- Migrasi db pada folder database/backups
+- Restore db backup pada folder database/backups
 - Jalankan ```php artisan telescope:install```
 - Jalankan ```php artisan migrate```
 - Jalankan ```php artisan optimize:clear```
