@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{{ url('landingpage/css/styles.css') }}" rel="stylesheet" />
+    <link href="{{ url('/landingpage/css/styleslandingpage.css') }}" rel="stylesheet" />
      <!-- Footer start  -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -89,11 +89,11 @@
                         <div class="footer-pad">
                             <h4>Kanal Kami</h4>
                             <ul class="social-network social-circle">
-                                <li><a href="https://www.youtube.com/channel/UCAlK8edDZkN5Ci9hiKIRf6w" target="_blank" class="icoYoutube" title="Youtube"><i class="fa fa-youtube-play"
+                                <li><a href="https://www.youtube.com/channel/UCAlK8edDZkN5Ci9hiKIRf6w" target="_blank" rel="noopener" or rel="noreferrer" class="icoYoutube" title="Youtube"><i class="fa fa-youtube-play"
                                             aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.instagram.com/bangkuprivat.id/" target="_blank" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"
+                                <li><a href="https://www.instagram.com/bangkuprivat.id/" target="_blank" rel="noopener" or rel="noreferrer" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"
                                             aria-hidden="true"></i></a></li>
-                                <li><a href="https://hubb.link/bangkuprivat/" target="_blank" class="icoBangkuprivat" title="Bangku Privat"><img
+                                <li><a href="https://hubb.link/bangkuprivat/" target="_blank" rel="noopener" or rel="noreferrer" class="icoBangkuprivat" title="Bangku Privat"><img
                                             src="{{ asset('landingpage/assets/img/logoBP-bgwhite.png') }}" class=""
                                             width="30px" alt=""></a></li>
                             </ul>
@@ -104,7 +104,7 @@
                         <div class="footer-pad">
                             <h4>Komunitas Kami</h4>
                             <ul class="social-network social-circle">
-                                <li><a href="https://t.me/joinchat/7yL-cRZ0SmU4MDhl" target="_blank" class="icoTelegram" title="Telegram"><i class="fa fa-telegram"
+                                <li><a href="https://t.me/joinchat/7yL-cRZ0SmU4MDhl" target="_blank" rel="noopener" or rel="noreferrer" class="icoTelegram" title="Telegram"><i class="fa fa-telegram"
                                             aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
@@ -122,7 +122,7 @@
     <!-- end Footer -->
 
     <!-- Script  -->
-    <link href="{{url('landingpage/css/styleslandingpage.css') }}" rel="stylesheet" />
+    <link href="{{url('/landingpage/css/styleslandingpage.css') }}" rel="stylesheet" />
     {{-- Footer start --}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -28,12 +28,12 @@
                    <div class="footer-pad">
                        <h4>Kanal Kami</h4>
                        <ul class="social-network social-circle">
-                           <li><a href="https://www.youtube.com/channel/UCAlK8edDZkN5Ci9hiKIRf6w" target="_blank"
+                           <li><a href="https://www.youtube.com/channel/UCAlK8edDZkN5Ci9hiKIRf6w" target="_blank" rel="noopener" or rel="noreferrer"
                                    class="icoYoutube" title="Youtube"><i class="fa fa-youtube-play"
                                        aria-hidden="true"></i></a></li>
-                           <li><a href="https://www.instagram.com/bangkuprivat.id/" target="_blank" class="icoInstagram"
+                           <li><a href="https://www.instagram.com/bangkuprivat.id/" target="_blank" rel="noopener" or rel="noreferrer" class="icoInstagram"
                                    title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                           <li><a href="https://hubb.link/bangkuprivat/" target="_blank" class="icoBangkuprivat"
+                           <li><a href="https://hubb.link/bangkuprivat/" target="_blank" rel="noopener" or rel="noreferrer" class="icoBangkuprivat"
                                    title="Bangku Privat"><img
                                        src="{{ asset('landingpage/assets/img/logoBP-bgwhite.png') }}" class=""
                                        width="30px" alt=""></a></li>
@@ -45,7 +45,7 @@
                    <div class="footer-pad">
                        <h4>Komunitas Kami</h4>
                        <ul class="social-network social-circle">
-                           <li><a href="https://t.me/joinchat/7yL-cRZ0SmU4MDhl" target="_blank" class="icoTelegram"
+                           <li><a href="https://t.me/joinchat/7yL-cRZ0SmU4MDhl" target="_blank" rel="noopener" or rel="noreferrer" class="icoTelegram"
                                    title="Telegram"><i class="fa fa-telegram" aria-hidden="true"></i></a></li>
                        </ul>
                    </div>
