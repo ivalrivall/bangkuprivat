@@ -25,7 +25,7 @@
         <div class="card">
             <div class="login-logo">
                 <a href="{{ url('/') }}">
-                    <img src="{{ asset('TemplateHome/dist/img/logo_BP.png') }}" width="100" alt="">
+                    <img src="{{ asset('TemplateHome/dist/img/logo_BP.png') }}" style="width:100px" alt="">
                 </a>
             </div>
             <div class="card-body login-card-body">

@@ -27,7 +27,7 @@
         <div class="card">
             <div class="register-logo">
                 <a href="{{ url('/') }}">
-                    <img src="{{ url('TemplateHome/dist/img/logo_BP.png') }}" width="100" alt="">
+                    <img src="{{ url('TemplateHome/dist/img/logo_BP.png') }}" style="width:100px" alt="">
                 </a>
             </div>
 

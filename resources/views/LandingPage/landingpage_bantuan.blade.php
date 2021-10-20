@@ -95,7 +95,7 @@
                                             aria-hidden="true"></i></a></li>
                                 <li><a href="https://hubb.link/bangkuprivat/" target="_blank" rel="noopener" or rel="noreferrer" class="icoBangkuprivat" title="Bangku Privat"><img
                                             src="{{ asset('landingpage/assets/img/logoBP-bgwhite.png') }}" class=""
-                                            width="30px" alt=""></a></li>
+                                            style="width:30px" alt=""></a></li>
                             </ul>
                         </div>
                     </div>
