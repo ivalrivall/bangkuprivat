@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Bangku Privat | Temukan Mentor Pilihan Anda atau Bergabung Menjadi Mentor Kami</title>
-<meta name="title" content="Bangku Kelas">
+<meta name="title" content="Bangku Privat | Temukan mentor pilihan anda atau bergabung menjadi mentor kami">
 <meta name="description" content="Sistem reservasi BangkuKelas, anda bisa mencari mentor berkualitas untuk pembelajaran secara online atau offline di dengan mudah dimanapun dan kapanpun">
 <meta name="keywords" content="elearning,  online, offline, learning, mentor, guru, reservasi murah, pembelajaran, les, privat, les privat">
 <meta name="robots" content="index, follow">
@@ -9,6 +9,21 @@
 <meta name="language" content="English">
 <meta name="revisit-after" content="10 days">
 <meta name="author" content="Ival">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bangkuprivat.ivalpha.com/">
+<meta property="og:title" content="Bangku Privat | Temukan mentor pilihan anda atau bergabung menjadi mentor kami">
+<meta property="og:description" content="Sistem reservasi BangkuKelas, anda bisa mencari mentor berkualitas untuk pembelajaran secara online atau offline di dengan mudah dimanapun dan kapanpun">
+<meta property="og:image" content="https://bangkuprivat.ivalpha.com/public/landingpage/assets/img/logo_BP-bgwhite.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://bangkuprivat.ivalpha.com/">
+<meta property="twitter:title" content="Bangku Privat | Temukan mentor pilihan anda atau bergabung menjadi mentor kami">
+<meta property="twitter:description" content="Sistem reservasi BangkuKelas, anda bisa mencari mentor berkualitas untuk pembelajaran secara online atau offline di dengan mudah dimanapun dan kapanpun">
+<meta property="twitter:image" content="https://bangkuprivat.ivalpha.com/public/landingpage/assets/img/logo_BP-bgwhite.png">
+
 <link rel="stylesheet" href="{{ url('/leftsidebar/styleleftsidebar.css') }}">
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
