@@ -18,6 +18,9 @@ Ini adalah sistem untuk pemesanan dan manajemen reservasi mentor, aplikasi ini d
 ### Link Demo
 [https://bangkuprivat.ivalpha.com](https://bangkuprivat.ivalpha.com)
 
+### Access Account
+[Google docs](https://docs.google.com/document/d/1e-VqYR3I8EfTbyboxpAfEfG2vgUQ91Ce/edit?usp=sharing&ouid=106814956753405953251&rtpof=true&sd=true)
+
 ## License
 
 BangkuPrivat is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
